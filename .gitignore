@@ -1,3 +1,123 @@
-# Godot 4+ specific ignores
+# Godot 4.3 specific ignores
+# ----------------------------
+
+# Godot import and cache directories
 .godot/
-/android/
+**/.godot/
+
+# Godot export templates and builds
+export/
+export_presets.cfg
+
+# Godot import and cache files
+*.import/
+
+# Godot temporary files
+**/*.tmp
+**/*.tmp.*
+
+# Godot mono/.NET specific (if using C#)
+mono/
+*.csproj
+*.sln
+*.userprefs
+
+# Godot Android builds
+android/
+android_source/
+
+
+# Operating System files
+# ----------------------
+
+# Windows
+[Dd]esktop.ini
+Thumbs.db
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+**/.DS_Store
+
+# Linux
+*~
+
+
+# Editor and IDE files
+# --------------------
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+
+# Visual Studio
+.vs/
+*.vcxproj
+*.vcxproj.filters
+
+
+# Project specific (common for 2D games)
+# --------------------------------------
+
+# Custom export directories (adjust as needed)
+builds/
+releases/
+
+# Log files
+*.log
+logs/
+
+# Backup files
+*~
+*.bak
+*.backup
+
+# Temporary files
+*.tmp
+temp/
+
+
+# Godot 4.x specific additional ignores
+# --------------------------------------
+
+# Godot 4.x cache and intermediate files
+**/.godot/imported/
+**/.godot/editor/
+**/.godot/asset_cache/
+**/.godot/script_cache/
+
+# Godot 4.x shader cache
+**/.godot/shader_cache/
+
+# Godot 4.x texture compression cache
+**/.godot/textures/
+
+# Godot 4.x project settings backup
+**/.godot/workspace.ini
+
+# Godot 4.x debug files
+**/.godot/debug/
+
+# Godot 4.x export debug
+**/.godot/export/
+
+
+# Optional: Ignore large asset sources if you have exported versions
+# ------------------------------------------------------------------
+# Uncomment these if you want to ignore source files and only keep imported versions
+
+# *.psd
+# *.ai
+# *.blend
+# *.mb
+# *.ma
