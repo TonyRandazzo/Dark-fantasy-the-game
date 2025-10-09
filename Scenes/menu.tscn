@@ -351,6 +351,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="TextureButton2"]
+layout_mode = 0
 offset_left = 44.0
 offset_top = -1.0
 offset_right = 269.0
@@ -375,6 +376,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="TextureButton3"]
+layout_mode = 0
 offset_left = 60.0
 offset_top = -1.0
 offset_right = 254.0

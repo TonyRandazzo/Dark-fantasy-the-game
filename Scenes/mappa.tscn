@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqwpbmpd5vci8"]
+[gd_scene load_steps=15 format=3 uid="uid://bqwpbmpd5vci8"]
 
+[ext_resource type="Script" path="res://Scenes/mappa.gd" id="1_oe1ec"]
 [ext_resource type="Texture2D" uid="uid://b4h5pcnn65saw" path="res://Sfondi/mappa.webp" id="1_wogkh"]
 [ext_resource type="Texture2D" uid="uid://cnd60hv2vwmcb" path="res://UI/knight.png" id="2_pgroo"]
 [ext_resource type="Texture2D" uid="uid://bx5g2n2gtdrvo" path="res://UI/assasin.png" id="3_ey3tb"]
@@ -9,8 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://d16gwrtdwi1bi" path="res://UI/wood.png" id="6_0ny5s"]
 [ext_resource type="Script" path="res://Scenes/place.gd" id="6_1b7wo"]
 [ext_resource type="Texture2D" uid="uid://dbc7j6mxv1gb0" path="res://UI/cave.png" id="7_npac7"]
+[ext_resource type="Texture2D" uid="uid://mgow4rha6f16" path="res://UI/pause1.png" id="11_jhkdb"]
+[ext_resource type="Texture2D" uid="uid://domwjaixu0uie" path="res://UI/Pause.png" id="12_711pr"]
+[ext_resource type="Texture2D" uid="uid://b8n8g1t8bmium" path="res://UI/RectangleBox_96x96.png" id="13_03ivl"]
+[ext_resource type="Texture2D" uid="uid://br6qnyfcv56ku" path="res://UI/Button_52x14.png" id="14_wwkca"]
 
 [node name="Mappa" type="Node2D"]
+script = ExtResource("1_oe1ec")
 
 [node name="Mappa" type="Sprite2D" parent="."]
 position = Vector2(580, 323)
@@ -184,6 +190,68 @@ texture_normal = ExtResource("7_npac7")
 texture_pressed = ExtResource("7_npac7")
 script = ExtResource("6_1b7wo")
 
+[node name="PauseButton" type="TextureButton" parent="."]
+process_mode = 3
+offset_left = 1046.0
+offset_top = 30.0
+offset_right = 1134.0
+offset_bottom = 108.0
+texture_normal = ExtResource("11_jhkdb")
+texture_pressed = ExtResource("12_711pr")
+stretch_mode = 0
+
+[node name="PauseScreen" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+
+[node name="RectangleBox96x96" type="Sprite2D" parent="PauseScreen"]
+process_mode = 3
+position = Vector2(608.875, 338.5)
+scale = Vector2(7.16927, 4.05208)
+texture = ExtResource("13_03ivl")
+
+[node name="Continue" type="TextureButton" parent="PauseScreen"]
+process_mode = 3
+offset_left = 382.0
+offset_top = 205.0
+offset_right = 833.0
+offset_bottom = 283.0
+texture_normal = ExtResource("14_wwkca")
+texture_pressed = ExtResource("14_wwkca")
+texture_hover = ExtResource("14_wwkca")
+texture_disabled = ExtResource("14_wwkca")
+texture_focused = ExtResource("14_wwkca")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Settings" type="TextureButton" parent="PauseScreen"]
+process_mode = 3
+offset_left = 382.0
+offset_top = 307.0
+offset_right = 833.0
+offset_bottom = 385.0
+texture_normal = ExtResource("14_wwkca")
+texture_pressed = ExtResource("14_wwkca")
+texture_hover = ExtResource("14_wwkca")
+texture_disabled = ExtResource("14_wwkca")
+texture_focused = ExtResource("14_wwkca")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Quit" type="TextureButton" parent="PauseScreen"]
+process_mode = 3
+offset_left = 382.0
+offset_top = 403.0
+offset_right = 833.0
+offset_bottom = 481.0
+texture_normal = ExtResource("14_wwkca")
+texture_pressed = ExtResource("14_wwkca")
+texture_hover = ExtResource("14_wwkca")
+texture_disabled = ExtResource("14_wwkca")
+texture_focused = ExtResource("14_wwkca")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="Territories/Place" to="Territories/Place" method="_on_pressed"]
 [connection signal="pressed" from="Territories/Place2" to="Territories/Place2" method="_on_pressed"]
 [connection signal="pressed" from="Territories/Place3" to="Territories/Place3" method="_on_pressed"]
@@ -196,3 +264,7 @@ script = ExtResource("6_1b7wo")
 [connection signal="pressed" from="Territories4/Place" to="Territories4/Place" method="_on_pressed"]
 [connection signal="pressed" from="Territories4/Place2" to="Territories4/Place2" method="_on_pressed"]
 [connection signal="pressed" from="Territories4/Place3" to="Territories4/Place3" method="_on_pressed"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="PauseScreen/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="PauseScreen/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="PauseScreen/Quit" to="." method="_on_quit_pressed"]
