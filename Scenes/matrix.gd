@@ -1,5 +1,6 @@
 extends Node2D
-
+#importiamo i NodeData, così posso creare oggetti NodeData
+const NodeData = preload("res://data/NodeData.gd")
 
 var matrix = []
 @export var columns = 15

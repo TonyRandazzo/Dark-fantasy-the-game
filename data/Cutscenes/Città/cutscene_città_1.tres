@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CutsceneData" load_steps=3 format=3 uid="uid://b8afyo7x5a2ud"]
+
+[ext_resource type="PackedScene" uid="uid://c2e01wr4cqgth" path="res://Scenes/NodeTypes/dialogue.tscn" id="1_yxeao"]
+[ext_resource type="Script" path="res://data/CutsceneData.gd" id="2_je216"]
+
+[resource]
+script = ExtResource("2_je216")
+id = "cutscene_città_1"
+tipo = "Narrativo"
+scena = ExtResource("1_yxeao")
+lines = Array[String]([])
+choices = Array[String]([])
+narration = "SEI FORTEEEEE"
+actions = Array[String]([])

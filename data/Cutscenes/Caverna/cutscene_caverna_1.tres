@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CutsceneData" load_steps=3 format=3 uid="uid://uyiv6yg2mqeh"]
+
+[ext_resource type="PackedScene" uid="uid://c2e01wr4cqgth" path="res://Scenes/NodeTypes/dialogue.tscn" id="1_su0ke"]
+[ext_resource type="Script" path="res://data/CutsceneData.gd" id="2_wrb6e"]
+
+[resource]
+script = ExtResource("2_wrb6e")
+id = "cutscene_caverna_1"
+tipo = "Narrativo"
+scena = ExtResource("1_su0ke")
+lines = Array[String]([])
+choices = Array[String]([])
+narration = "Entri nella caverna buia...\", \"Senti un rumore sinistro"
+actions = Array[String]([])
