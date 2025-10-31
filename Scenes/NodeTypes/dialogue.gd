@@ -1,4 +1,4 @@
-extends Control #può usare layout e nodi grafici
+extends Node2D #può usare layout e nodi grafici
 #segnale personalizzato, emesso quando cutscene termina, passando la “scelta” come stringa
 signal cutscene_ended(result: String)
 
@@ -16,16 +16,22 @@ var choices_shown: bool = false
 #SETUP DEI DATI
 #quando istanzi la scena, riceve la cutscene con i suoi dati
 func setup(c: CutsceneData) -> void:
+	
 	#copia nell'array  this, i dati dell'array istanziato ...
 	lines = c.lines
 	speakers = c.speakers
 	choices = c.choices
 	#l'indice della battuta quando la cutscene è nuova è 0
-	current_line = 0
+	current_line = 0    
 	#non ci sono scelte appena inizia, al massimo usciranno dopo
 	choices_shown = false
 	#fa subito visualizzare la prima linea
+	
+	print("--- setup cutscene ---")
+	print("cutscene resource:", c)
+	print("lines.size():", lines.size(), "lines:", lines)
 	_show_line()
+	
 
 
 #AVANZARE NEI DIALOGHI
@@ -47,14 +53,22 @@ func _show_line() -> void:
 		#vai nel nodo figlio chiamato DialogueBox, e dentro di lui prendi il nodo chiamato Text
 		#poi accedi alle sue proprietà.text| insomma è come dare l'indirizzo del nodo della scena "dialogue"
 		# "$DialogueBox/Text" è come fare "get_node("DialogueBox/Text")
+		print("Mostro linea:", lines[current_line])
 		$DialogueBox/Text.text = lines[current_line]  
+		
 		#sceglie chi parla
 		var speaker = speakers[current_line] if current_line < speakers.size() else ""
+		print("Speaker:", speaker)
+		
 		#fa la stessa cosa di prima ma con il Nome di chi parla
 		$DialogueBox/Name.text = speaker
+		
 		current_line += 1
+		print("Incremento current_line ->", current_line)
+		
 		#se non ci sono piu battute passa alle scelte
 	else:
+		print("Nessuna linea rimasta, passo alle scelte")
 		_show_choices()
 
 
@@ -69,6 +83,10 @@ func _show_choices() -> void:
 
 	for child in container.get_children():
 		child.queue_free()
+
+	if choices.is_empty():
+		print("Nessuna scelta disponibile.")
+		return
 
 	for choice in choices:
 		var btn := Button.new()

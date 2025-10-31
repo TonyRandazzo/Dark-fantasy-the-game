@@ -1,0 +1,115 @@
+[gd_scene load_steps=14 format=3 uid="uid://bqwpbmpd5vci8"]
+
+[ext_resource type="Script" path="res://Scenes/Map/mappa.gd" id="1_w6hae"]
+[ext_resource type="Texture2D" uid="uid://b4h5pcnn65saw" path="res://Sfondi/mappa.webp" id="2_0yblw"]
+[ext_resource type="Texture2D" uid="uid://cnd60hv2vwmcb" path="res://UI/knight.png" id="3_1c8jt"]
+[ext_resource type="Texture2D" uid="uid://bx5g2n2gtdrvo" path="res://UI/assasin.png" id="4_i7j81"]
+[ext_resource type="Texture2D" uid="uid://b4qd1du082qw5" path="res://UI/elf.png" id="5_nijn3"]
+[ext_resource type="Script" path="res://Scenes/Map/matrix.gd" id="6_yntih"]
+[ext_resource type="Resource" uid="uid://c2isimitvsw6s" path="res://data/Nodes/Caverna.tres" id="7_4qssi"]
+[ext_resource type="Texture2D" uid="uid://mgow4rha6f16" path="res://UI/pause1.png" id="7_mdi01"]
+[ext_resource type="Texture2D" uid="uid://domwjaixu0uie" path="res://UI/Pause.png" id="8_1f2ww"]
+[ext_resource type="Resource" uid="uid://7q3f7c31omv4" path="res://data/Nodes/Città.tres" id="8_fnssd"]
+[ext_resource type="Resource" uid="uid://d1xdtrj6vqnrs" path="res://data/Nodes/Foresta.tres" id="9_5atnw"]
+[ext_resource type="Texture2D" uid="uid://b8n8g1t8bmium" path="res://UI/RectangleBox_96x96.png" id="9_oh5ms"]
+[ext_resource type="Texture2D" uid="uid://br6qnyfcv56ku" path="res://UI/Button_52x14.png" id="10_woudf"]
+
+[node name="Mappa" type="Node2D"]
+script = ExtResource("1_w6hae")
+
+[node name="Mappa" type="Sprite2D" parent="."]
+position = Vector2(576.5, 326)
+scale = Vector2(1.79531, 2.54118)
+texture = ExtResource("2_0yblw")
+centered = false
+
+[node name="Party" type="Node2D" parent="."]
+position = Vector2(806, 570)
+
+[node name="Player" type="Sprite2D" parent="Party"]
+z_index = 1
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_1c8jt")
+
+[node name="Minion" type="Sprite2D" parent="Party"]
+visible = false
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("4_i7j81")
+
+[node name="Minion2" type="Sprite2D" parent="Party"]
+visible = false
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("5_nijn3")
+
+[node name="Matrix" type="Node2D" parent="."]
+script = ExtResource("6_yntih")
+node_data_types = [ExtResource("7_4qssi"), ExtResource("8_fnssd"), ExtResource("9_5atnw")]
+columns = 12
+rows = 8
+
+[node name="PauseButton" type="TextureButton" parent="."]
+process_mode = 3
+offset_left = 1046.0
+offset_top = 30.0
+offset_right = 1134.0
+offset_bottom = 108.0
+texture_normal = ExtResource("7_mdi01")
+texture_pressed = ExtResource("8_1f2ww")
+stretch_mode = 0
+
+[node name="PauseScreen" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+
+[node name="RectangleBox96x96" type="Sprite2D" parent="PauseScreen"]
+process_mode = 3
+position = Vector2(608.875, 338.5)
+scale = Vector2(7.16927, 4.05208)
+texture = ExtResource("9_oh5ms")
+
+[node name="Continue" type="TextureButton" parent="PauseScreen"]
+process_mode = 3
+offset_left = 382.0
+offset_top = 205.0
+offset_right = 833.0
+offset_bottom = 283.0
+texture_normal = ExtResource("10_woudf")
+texture_pressed = ExtResource("10_woudf")
+texture_hover = ExtResource("10_woudf")
+texture_disabled = ExtResource("10_woudf")
+texture_focused = ExtResource("10_woudf")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Settings" type="TextureButton" parent="PauseScreen"]
+process_mode = 3
+offset_left = 382.0
+offset_top = 307.0
+offset_right = 833.0
+offset_bottom = 385.0
+texture_normal = ExtResource("10_woudf")
+texture_pressed = ExtResource("10_woudf")
+texture_hover = ExtResource("10_woudf")
+texture_disabled = ExtResource("10_woudf")
+texture_focused = ExtResource("10_woudf")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Quit" type="TextureButton" parent="PauseScreen"]
+process_mode = 3
+offset_left = 382.0
+offset_top = 403.0
+offset_right = 833.0
+offset_bottom = 481.0
+texture_normal = ExtResource("10_woudf")
+texture_pressed = ExtResource("10_woudf")
+texture_hover = ExtResource("10_woudf")
+texture_disabled = ExtResource("10_woudf")
+texture_focused = ExtResource("10_woudf")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="PauseScreen/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="PauseScreen/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="PauseScreen/Quit" to="." method="_on_quit_pressed"]

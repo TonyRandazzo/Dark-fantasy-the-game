@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca1wxvw77ecux"]
+
+[ext_resource type="Script" path="res://Scenes/MapNodes/MapNode.gd" id="1_yd0on"]
+
+[node name="MapNode" type="Node2D"]
+script = ExtResource("1_yd0on")
+icon_scale = Vector2(0.15, 0.15)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(0.670588, 1, 1, 0.756863)
+offset_right = 8.0
+offset_bottom = 8.0
+text = "x"

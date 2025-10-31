@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="NodeData" load_steps=4 format=3 uid="uid://7q3f7c31omv4"]
+[gd_resource type="Resource" script_class="NodeData" load_steps=5 format=3 uid="uid://7q3f7c31omv4"]
 
 [ext_resource type="Script" path="res://data/NodeData.gd" id="1_f3j50"]
 [ext_resource type="Script" path="res://data/CutsceneData.gd" id="1_s3xi1"]
 [ext_resource type="Resource" uid="uid://b8afyo7x5a2ud" path="res://data/Cutscenes/Città/cutscene_città_1.tres" id="2_mdihn"]
+[ext_resource type="Texture2D" uid="uid://cny0ffti13vs5" path="res://UI/village.png" id="3_5rc6f"]
 
 [resource]
 script = ExtResource("1_f3j50")
-cutscenes_possibili = Array[ExtResource("1_s3xi1")]([ExtResource("2_mdihn"), null, null, null])
 tipo = "Città"
-nemici = Array[String]([])
-risorse = Array[String]([])
+cutscenes_possibili = Array[ExtResource("1_s3xi1")]([ExtResource("2_mdihn"), null, null, null])
+icon = ExtResource("3_5rc6f")
