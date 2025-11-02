@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqwpbmpd5vci8"]
+[gd_scene load_steps=15 format=3 uid="uid://bqwpbmpd5vci8"]
 
 [ext_resource type="Script" path="res://Scenes/Map/mappa.gd" id="1_w6hae"]
 [ext_resource type="Texture2D" uid="uid://b4h5pcnn65saw" path="res://Sfondi/mappa.webp" id="2_0yblw"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/Map/matrix.gd" id="6_yntih"]
 [ext_resource type="Resource" uid="uid://c2isimitvsw6s" path="res://data/Nodes/Caverna.tres" id="7_4qssi"]
 [ext_resource type="Texture2D" uid="uid://mgow4rha6f16" path="res://UI/pause1.png" id="7_mdi01"]
+[ext_resource type="Script" path="res://data/NodeData.gd" id="7_n67a0"]
 [ext_resource type="Texture2D" uid="uid://domwjaixu0uie" path="res://UI/Pause.png" id="8_1f2ww"]
 [ext_resource type="Resource" uid="uid://7q3f7c31omv4" path="res://data/Nodes/Città.tres" id="8_fnssd"]
 [ext_resource type="Resource" uid="uid://d1xdtrj6vqnrs" path="res://data/Nodes/Foresta.tres" id="9_5atnw"]
@@ -18,7 +19,6 @@
 script = ExtResource("1_w6hae")
 
 [node name="Mappa" type="Sprite2D" parent="."]
-position = Vector2(576.5, 326)
 scale = Vector2(1.79531, 2.54118)
 texture = ExtResource("2_0yblw")
 centered = false
@@ -43,7 +43,7 @@ texture = ExtResource("5_nijn3")
 
 [node name="Matrix" type="Node2D" parent="."]
 script = ExtResource("6_yntih")
-node_data_types = [ExtResource("7_4qssi"), ExtResource("8_fnssd"), ExtResource("9_5atnw")]
+node_data_types = Array[ExtResource("7_n67a0")]([ExtResource("7_4qssi"), ExtResource("8_fnssd"), ExtResource("9_5atnw")])
 columns = 12
 rows = 8
 

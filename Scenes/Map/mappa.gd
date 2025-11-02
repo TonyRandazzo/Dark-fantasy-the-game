@@ -12,7 +12,7 @@ func _ready():
 		)
 		map_sprite.position = Vector2.ZERO  # in alto a sinistra
 
-
+	pass
 
 
 func _on_pause_button_pressed() -> void:

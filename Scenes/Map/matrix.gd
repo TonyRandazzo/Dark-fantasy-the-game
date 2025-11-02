@@ -20,6 +20,7 @@ var cell_height = 0
 func _ready() -> void:
 	update_grid_size()
 	generate_matrix()
+	_draw()
 
 # Calcola le dimensioni delle celle in base alla finestra
 func update_grid_size() -> void:
@@ -38,8 +39,8 @@ func generate_matrix() -> void:
 				var node_instance = MapNodeScene.instantiate()
 				add_child(node_instance)  # aggiunge alla scena, così _ready() di MapNode viene chiamato
 				node_instance.position = Vector2(
-					c * cell_width + cell_width/2,
-					r * cell_height + cell_height/2
+					c * cell_width + cell_width/2 + randf_range(0,25),
+					r * cell_height + cell_height/2 + randf_range(-20,10)
 				)
 				# Assegna un NodeData casuale
 				var random_data = node_data_types.pick_random()
@@ -48,3 +49,13 @@ func generate_matrix() -> void:
 			else:
 				row_data.append(null)  # cella vuota
 		matrix.append(row_data)
+
+
+func _draw() -> void:
+	for i in range(columns + 1):
+		var x = i * cell_width
+		draw_line(Vector2(x, 0), Vector2(x, cell_height * rows), Color(1, 1, 1, 1), 1)
+
+	for j in range(rows + 1):
+		var y = j * cell_height
+		draw_line(Vector2(0, y), Vector2(cell_width * columns, y), Color(1, 1, 1, 1), 1)

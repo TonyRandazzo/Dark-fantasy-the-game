@@ -1,82 +1,82 @@
-extends Node2D #può usare layout e nodi grafici
-#segnale personalizzato, emesso quando cutscene termina, passando la “scelta” come stringa
+extends Node2D
+
 signal cutscene_ended(result: String)
 
 var lines: Array[String] = []
-#chi parla
 var speakers: Array[String] = []
-#contiene le scelte
 var choices: Array[String] = []
-#indice della battuta
 var current_line: int = 0
-#scelta in schermo, c'è o non c'è
 var choices_shown: bool = false
 
-
-#SETUP DEI DATI
-#quando istanzi la scena, riceve la cutscene con i suoi dati
+# --- SETUP DEI DATI ---
 func setup(c: CutsceneData) -> void:
-	
-	#copia nell'array  this, i dati dell'array istanziato ...
+	# copia dati ricevuti (stampo per debug)
 	lines = c.lines
 	speakers = c.speakers
 	choices = c.choices
-	#l'indice della battuta quando la cutscene è nuova è 0
-	current_line = 0    
-	#non ci sono scelte appena inizia, al massimo usciranno dopo
+	current_line = 0
 	choices_shown = false
-	#fa subito visualizzare la prima linea
-	
+
 	print("--- setup cutscene ---")
 	print("cutscene resource:", c)
 	print("lines.size():", lines.size(), "lines:", lines)
-	_show_line()
-	
+	print("speakers.size():", speakers.size(), "speakers:", speakers)
+	print("choices.size():", choices.size(), "choices:", choices)
+
+	# se non ci sono linee, esci (mostra debug)
+	if lines.is_empty():
+		push_warning("setup: lines è vuoto. Controlla il CutsceneData passato.")
+		if not choices.is_empty():
+			_show_choices()
+		return
 
 
-#AVANZARE NEI DIALOGHI
-# InputEvent è la classe base che rappresenta qualsiasi evento di input ricevuto
-#quindi _INPUT eseguita ogni "event" di tipo InputEvent
+	# assicurati che i nodi figlio siano pronti: usa call_deferred per sicurezza
+	call_deferred("_show_line")
+
+
+# --- INPUT ---
 func _input(event: InputEvent) -> void:
-	#se hai premuto il tasto per avanzare nel dialogo, e non ci sono scelte
 	if event.is_action_pressed("ui_accept") and not choices_shown:
-		#allora mostra dialogo
 		_show_line()
 
 
-
-#MOSTRARE UNA LINEA
+# --- MOSTRA LINEA ---
 func _show_line() -> void:
+	# controllo di sicurezza
+	if $DialogueBox == null:
+		push_error("DialogueBox non trovato.")
+		return
+	if $DialogueBox.has_node("Text") == false:
+		push_error("DialogueBox/Text non trovato.")
+		return
+
+	print("current_line:", current_line, "lines.size():", lines.size())
 	if current_line < lines.size():
-		
-		#la current_line viene scritta come:
-		#vai nel nodo figlio chiamato DialogueBox, e dentro di lui prendi il nodo chiamato Text
-		#poi accedi alle sue proprietà.text| insomma è come dare l'indirizzo del nodo della scena "dialogue"
-		# "$DialogueBox/Text" è come fare "get_node("DialogueBox/Text")
 		print("Mostro linea:", lines[current_line])
-		$DialogueBox/Text.text = lines[current_line]  
-		
-		#sceglie chi parla
-		var speaker = speakers[current_line] if current_line < speakers.size() else ""
-		print("Speaker:", speaker)
-		
-		#fa la stessa cosa di prima ma con il Nome di chi parla
-		$DialogueBox/Name.text = speaker
-		
+		$DialogueBox.get_node("Text").text = str(lines[current_line])
+
+		var speaker := ""
+		if current_line < speakers.size():
+			speaker = speakers[current_line]
+		$DialogueBox.get_node("Name").text = speaker
+
 		current_line += 1
 		print("Incremento current_line ->", current_line)
-		
-		#se non ci sono piu battute passa alle scelte
+
+		# se dopo l'incremento siamo arrivati alla fine e ci sono scelte, le mostro
+	if choices.is_empty():
+		print("Nessuna scelta disponibile.")
+		return
 	else:
 		print("Nessuna linea rimasta, passo alle scelte")
 		_show_choices()
 
 
-
-
+# --- MOSTRA SCELTE ---
 func _show_choices() -> void:
 	choices_shown = true
-	var container := $DialogueBox/ChoicesContainer
+	var container := $DialogueBox.get_node("ChoicesContainer") if $DialogueBox.has_node("ChoicesContainer") else null
 	if container == null:
 		push_error("ChoicesContainer non trovato sotto DialogueBox")
 		return
@@ -94,7 +94,6 @@ func _show_choices() -> void:
 		btn.focus_mode = Control.FOCUS_NONE
 		btn.pressed.connect(_on_choice_pressed.bind(choice))
 		container.add_child(btn)
-
 
 
 func _on_choice_pressed(choice: String) -> void:
