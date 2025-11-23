@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2e01wr4cqgth"]
+[gd_scene load_steps=10 format=3 uid="uid://c2e01wr4cqgth"]
 
 [ext_resource type="Texture2D" uid="uid://de2ikyk2kdfdl" path="res://Sfondi/dialogue.jpg" id="1_c73ew"]
 [ext_resource type="Script" path="res://Scenes/NodeTypes/dialogue.gd" id="1_vgft8"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bcu2twlgys1tj" path="res://Characters/enemy.webp" id="3_yqqrw"]
 [ext_resource type="Texture2D" uid="uid://qiqq1ma1g24d" path="res://UI/ItemBox_24x24.png" id="4_36ny5"]
 [ext_resource type="Texture2D" uid="uid://br6qnyfcv56ku" path="res://UI/Button_52x14.png" id="5_qcwg8"]
+[ext_resource type="Texture2D" uid="uid://d4e3bn0p1sp21" path="res://UI/RightArrowButton_7x10.png" id="7_4yk1v"]
+[ext_resource type="Texture2D" uid="uid://bni3b6b74ykay" path="res://UI/EquipLabel_13x14.png" id="8_tfty4"]
+[ext_resource type="Texture2D" uid="uid://b8n8g1t8bmium" path="res://UI/RectangleBox_96x96.png" id="9_uph35"]
 
 [node name="Dialogue" type="Node2D"]
 script = ExtResource("1_vgft8")
@@ -55,5 +58,57 @@ offset_left = 14.0
 offset_top = 485.0
 offset_right = 1135.0
 offset_bottom = 586.0
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+autowrap_mode = 2
+
+[node name="Continue" type="TextureButton" parent="DialogueBox"]
+offset_left = 1108.0
+offset_top = 605.0
+offset_right = 1116.0
+offset_bottom = 615.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("7_4yk1v")
+texture_pressed = ExtResource("7_4yk1v")
+texture_hover = ExtResource("7_4yk1v")
+texture_disabled = ExtResource("7_4yk1v")
+texture_focused = ExtResource("7_4yk1v")
+
+[node name="History" type="TextureButton" parent="DialogueBox"]
+offset_left = 4.0
+offset_top = 598.0
+offset_right = 17.0
+offset_bottom = 612.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("8_tfty4")
+texture_pressed = ExtResource("8_tfty4")
+texture_hover = ExtResource("8_tfty4")
+texture_disabled = ExtResource("8_tfty4")
+texture_focused = ExtResource("8_tfty4")
+
+[node name="History" type="Node2D" parent="."]
+visible = false
+
+[node name="Background" type="Sprite2D" parent="History"]
+position = Vector2(576, 324.5)
+scale = Vector2(10.7708, 6.46875)
+texture = ExtResource("9_uph35")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="History"]
+offset_left = 165.0
+offset_top = 83.0
+offset_right = 997.0
+offset_bottom = 571.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="History/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="History/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Dialogue" type="Label" parent="History/ScrollContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 autowrap_mode = 2
